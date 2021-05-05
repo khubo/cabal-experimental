@@ -1,14 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Client from 'cabal-client';
-
-const client = new Client({});
+import { useMessage } from './lib/hoooks';
 
 export default function App() {
-  console.log('client is', client);
+  const { messages } = useMessage();
+
   return (
     <div>
       <h1> Hello</h1>
+      <ul>
+        {messages.map((msg) => {
+          return <div> {msg?.value?.content?.text}</div>;
+        })}
+      </ul>
     </div>
   );
 }
