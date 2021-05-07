@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMessage } from './lib/hoooks';
+import { useMessage } from './lib';
 
 export default function App() {
   const { messages } = useMessage();

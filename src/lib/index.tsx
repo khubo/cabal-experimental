@@ -17,8 +17,8 @@ export function CabalProvider(props: any) {
   const [client, setClient] = useState();
 
   async function initializeCabals() {
+    console.log('this is called and created');
     const client = createCabalClient(props.dbdir);
-    const cabals = client.getCabalKeys();
     if (props.initCabal) {
       await client.addCabal(props.initCabal);
       setClient(client);
@@ -34,3 +34,7 @@ export function CabalProvider(props: any) {
     </CabalContext.Provider>
   );
 }
+
+export * from './hooks/useCabal';
+export * from './hooks/useChannel';
+export * from './hooks/useMessage';

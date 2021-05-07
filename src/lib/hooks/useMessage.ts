@@ -1,13 +1,16 @@
 import { useContext, useState, useEffect } from 'react';
-import { uniqBy } from 'lodash';
-import { CabalContext } from './index';
+import { CabalContext } from '../index';
+import { useChannel } from './useChannel';
 
 export function useMessage() {
   const [messages, setMessages] = useState<Array<any>>([]);
   const client = useContext(CabalContext);
 
+  const { currentChannel } = useChannel();
+
   useEffect(() => {
     if (client) {
+      console.log('this is called haha');
       client.getMessages(
         {
           channel: 'default',
@@ -18,12 +21,11 @@ export function useMessage() {
       );
       const cabal = client.getCurrentCabal();
       cabal.on('new-message', (msg: any) => {
-        console.log('the messages', msg);
-        const allMessages = [...messages, msg.message];
-        setMessages(allMessages);
+        console.log('msg is', msg);
+        setMessages((messages) => [...messages, msg.message]);
       });
     }
-  }, [client]);
+  }, [currentChannel]);
 
   return {
     messages,
