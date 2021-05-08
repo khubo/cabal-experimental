@@ -12,7 +12,7 @@
   "scripts": {},
   "license": "MIT",
   "dependencies": {
-    "cabal-client": "^6.3.1",
+    "cabal-client": "^6.3.2",
     "lodash": "^4.17.21"
   },
   "build": {
