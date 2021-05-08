@@ -10,7 +10,6 @@ export function useMessage() {
 
   useEffect(() => {
     if (client) {
-      console.log('this is called haha');
       client.getMessages(
         {
           channel: 'default',
@@ -21,9 +20,7 @@ export function useMessage() {
       );
       const cabal = client.getCurrentCabal();
       cabal.on('new-message', (msg: any) => {
-        console.log('and here ', msg.channel, currentChannel);
         if (msg.channel === currentChannel) {
-          console.log('reaching here yyay');
           setMessages((messages) => [...messages, msg.message]);
         }
       });
