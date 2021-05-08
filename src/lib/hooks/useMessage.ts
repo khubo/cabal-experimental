@@ -21,8 +21,11 @@ export function useMessage() {
       );
       const cabal = client.getCurrentCabal();
       cabal.on('new-message', (msg: any) => {
-        console.log('msg is', msg);
-        setMessages((messages) => [...messages, msg.message]);
+        console.log('and here ', msg.channel, currentChannel);
+        if (msg.channel === currentChannel) {
+          console.log('reaching here yyay');
+          setMessages((messages) => [...messages, msg.message]);
+        }
       });
     }
   }, [currentChannel]);
