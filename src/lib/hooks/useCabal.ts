@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { CabalContext } from '../index';
+import { CabalContext } from '../CabalProvider';
 
 export function useCabal() {
   const [cabals, setCabals] = useState<Array<any>>([]);

@@ -7,7 +7,7 @@ export function useChannel() {
 
   const [channels, setChannels] = useState([]); // all channels
   const [joinedChannels, setJoinedChannels] = useState([]); // all channels joined by the user
-  const [currentChannel, setCurrentChannel] = useState('default'); //current selected channel
+  const [currentChannel, setCurrentChannel] = useState('default'); // current selected channel
   const [members, setMembers] = useState([]); // members of channel
 
   const { currentCabal } = useCabal();

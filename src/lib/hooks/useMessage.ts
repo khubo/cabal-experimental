@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react';
-import { CabalContext } from '../index';
+import { CabalContext } from '../CabalProvider';
 import { useChannel } from './useChannel';
 
 export function useMessage() {
