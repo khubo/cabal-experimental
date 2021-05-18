@@ -17,13 +17,13 @@ export function useChannel() {
     const channels = client.getChannels();
     const joinedChannels = client.getJoinedChannels();
     const channel = client.getCurrentChannel();
-    const channelMembers = client.getChannelMembers(channel);
+    // const channelMembers = client.getChannelMembers(channel);
 
     // TODO: any way to batch irrespective of the renderer?
     setChannels(channels);
     setCurrentChannel(channel);
     setJoinedChannels(joinedChannels);
-    setMembers(channelMembers);
+    // setMembers(channelMembers);
   }, [currentCabal]);
 
   /**
