@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useChannel } from '../lib';
+import { useCabal, useChannel } from '../lib';
 
 const Container = styled.div`
   padding: 10px;
@@ -17,7 +17,9 @@ export default function ChannelList() {
     joinedChannels,
     focusChannel,
   } = useChannel();
+  const { cabals, focusCabal } = useCabal();
 
+  console.log('currentchannel!@#', currentChannel);
   return (
     <Container>
       {joinedChannels.map((channel) => (
@@ -32,6 +34,13 @@ export default function ChannelList() {
           # {channel}
         </Channel>
       ))}
+      <div>
+        {cabals.map((item) => (
+          <div key={item} onClick={() => focusCabal(item)}>
+            {item}
+          </div>
+        ))}
+      </div>
     </Container>
   );
 }

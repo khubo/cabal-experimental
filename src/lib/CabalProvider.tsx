@@ -20,6 +20,10 @@ export function CabalProvider({ children, initCabal, dbdir }: any) {
     const cabalClient = createCabalClient(dbdir);
     if (initCabal) {
       await cabalClient.addCabal(initCabal);
+
+      await cabalClient.addCabal(
+        'a69fe8ad12f1177080cc926e2b552b336cfd26060d07e1221f8c4e6626c89dc4'
+      );
       setClient(cabalClient);
     }
   }

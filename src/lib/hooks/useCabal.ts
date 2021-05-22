@@ -11,9 +11,15 @@ export function useCabal() {
     if (!client) return;
     const cabals = client.getCabalKeys();
     const cabal = client.getCurrentCabal();
-
     setCabals(cabals);
     setCurrentCabal(cabal);
+
+    cabals.forEach((cabal) => {
+      const selectedCabal = client.getDetails(cabal);
+      selectedCabal.on('cabal-focus', (event: any) => {
+        setCurrentCabal(client.getCurrentCabal());
+      });
+    });
   }, [client]);
 
   // add a new cabal
@@ -24,9 +30,15 @@ export function useCabal() {
     });
   }
 
+  function focusCabal(key) {
+    console.log('keys is', key);
+    client?.focusCabal(key);
+  }
+
   return {
     cabals,
     currentCabal,
     addCabal,
+    focusCabal,
   };
 }

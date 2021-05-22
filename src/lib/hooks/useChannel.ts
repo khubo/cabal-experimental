@@ -13,9 +13,11 @@ export function useChannel() {
   const { currentCabal } = useCabal();
 
   function focusChannel(channel: string) {
-    if (!client.getJoinedChannels().includes(channel)) return;
-    client.focusChannel(channel);
-    setCurrentChannel(channel);
+    if (
+      client?.getJoinedChannels().includes(channel) &&
+      channel !== currentChannel
+    )
+      client.focusChannel(channel);
   }
   useEffect(() => {
     if (!client) return;
@@ -34,13 +36,15 @@ export function useChannel() {
       client.focusChannel('default');
       setCurrentChannel('default');
     }
-  }, [currentCabal]);
+  }, [currentCabal, client]);
 
-  /**
-   * change the current channel
-   * @param channel
-   * @returns
-   */
+  useEffect(() => {
+    console.log('currentCabal', currentCabal);
+    if (currentCabal)
+      currentCabal.on('channel-focus', (event: any) => {
+        setCurrentChannel(event.channel);
+      });
+  }, [client, currentCabal]);
 
   return {
     channels,
