@@ -187,6 +187,10 @@ export default merge(baseConfig, {
             mimetype: 'application/octet-stream',
           },
         },
+        include: path.resolve(
+          __dirname,
+          'node_modules/react-native-vector-icons'
+        ),
       },
       // EOT Font
       {
