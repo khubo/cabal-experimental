@@ -31,7 +31,6 @@ export function useCabal() {
   }
 
   function focusCabal(key) {
-    console.log('keys is', key);
     client?.focusCabal(key);
   }
 

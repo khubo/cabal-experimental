@@ -8,7 +8,6 @@ const WrapperContainer = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  margin: 10px;
 `;
 
 const MessageBox = styled(Input)`
@@ -27,9 +26,17 @@ const SendButton = styled(Button)`
 `;
 
 const MessageList = styled.div`
+  padding: 20px;
   height: 100%;
   color: black;
   overflow: scroll;
+`;
+
+const Header = styled.div`
+  background-color: black;
+  color: white;
+  padding: 15px;
+  border: 1px solid grey;
 `;
 export default function MessageContainer() {
   const { currentChannel, focusChannel } = useChannel();
@@ -38,7 +45,7 @@ export default function MessageContainer() {
   console.log('messages here are', messages[3]?.value?.content?.text);
   return (
     <WrapperContainer>
-      <h1> Messages</h1>
+      <Header> # {currentChannel}</Header>
       <MessageList>
         {messages.map((item) => {
           return <div> {item?.value?.content?.text}</div>;

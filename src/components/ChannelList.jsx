@@ -17,7 +17,6 @@ export default function ChannelList() {
     joinedChannels,
     focusChannel,
   } = useChannel();
-  const { cabals, focusCabal } = useCabal();
 
   console.log('currentchannel!@#', currentChannel);
   return (
@@ -34,13 +33,6 @@ export default function ChannelList() {
           # {channel}
         </Channel>
       ))}
-      <div>
-        {cabals.map((item) => (
-          <div key={item} onClick={() => focusCabal(item)}>
-            {item}
-          </div>
-        ))}
-      </div>
     </Container>
   );
 }
