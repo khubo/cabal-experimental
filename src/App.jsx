@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
-import { useChannel, useMessage } from './lib';
 import styled from 'styled-components';
 import Sidebar from './components/Sidebar';
 import MessageContainer from './components/MessageContainer';

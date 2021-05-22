@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { useCabal } from './useCabal';
-import { CabalContext } from '../index';
+import { CabalContext } from '../CabalProvider';
 
 export function useChannel() {
   const client = useContext(CabalContext);
@@ -12,18 +12,28 @@ export function useChannel() {
 
   const { currentCabal } = useCabal();
 
+  function focusChannel(channel: string) {
+    if (!client.getJoinedChannels().includes(channel)) return;
+    client.focusChannel(channel);
+    setCurrentChannel(channel);
+  }
   useEffect(() => {
     if (!client) return;
-    const channels = client.getChannels();
-    const joinedChannels = client.getJoinedChannels();
+    const channelsList = client.getChannels();
+    const joinedChannelsList = client.getJoinedChannels();
     const channel = client.getCurrentChannel();
     // const channelMembers = client.getChannelMembers(channel);
 
     // TODO: any way to batch irrespective of the renderer?
-    setChannels(channels);
+    setChannels(channelsList);
     setCurrentChannel(channel);
-    setJoinedChannels(joinedChannels);
+    setJoinedChannels(joinedChannelsList);
     // setMembers(channelMembers);
+
+    if (channel === '!status') {
+      client.focusChannel('default');
+      setCurrentChannel('default');
+    }
   }, [currentCabal]);
 
   /**
@@ -31,11 +41,6 @@ export function useChannel() {
    * @param channel
    * @returns
    */
-  function focusChannel(channel: string) {
-    if (!(channel in joinedChannels)) return;
-    client.focusChannel(channel);
-    setCurrentChannel(channel);
-  }
 
   return {
     channels,
