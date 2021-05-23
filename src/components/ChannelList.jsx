@@ -18,7 +18,6 @@ export default function ChannelList() {
     focusChannel,
   } = useChannel();
 
-  console.log('currentchannel!@#', currentChannel);
   return (
     <Container>
       {joinedChannels.map((channel) => (
@@ -26,7 +25,6 @@ export default function ChannelList() {
           key={channel}
           current={currentChannel === channel}
           onClick={() => {
-            console.log('this is clicked', channel);
             focusChannel(channel);
           }}
         >

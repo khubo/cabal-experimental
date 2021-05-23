@@ -27,6 +27,7 @@ export default function CabalList() {
         <CabalContainer
           onClick={() => focusCabal(item)}
           selected={currentCabalKey === item}
+          key={item}
         >
           {item.slice(0, 2)}
         </CabalContainer>

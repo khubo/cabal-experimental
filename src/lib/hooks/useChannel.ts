@@ -39,7 +39,6 @@ export function useChannel() {
   }, [currentCabal, client]);
 
   useEffect(() => {
-    console.log('currentCabal', currentCabal);
     if (currentCabal)
       currentCabal.on('channel-focus', (event: any) => {
         setCurrentChannel(event.channel);

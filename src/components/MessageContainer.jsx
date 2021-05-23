@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Input, Button } from 'react-chat-elements';
 import { useChannel, useMessage } from '../lib';
+import Message from './Message';
 
 const WrapperContainer = styled.div`
   width: 100%;
@@ -42,14 +43,17 @@ export default function MessageContainer() {
   const { currentChannel, focusChannel } = useChannel();
   const { messages } = useMessage(currentChannel);
 
-  console.log('messages here are', messages[3]?.value?.content?.text);
   return (
     <WrapperContainer>
       <Header> # {currentChannel}</Header>
       <MessageList>
-        {messages.map((item) => {
-          return <div> {item?.value?.content?.text}</div>;
-        })}
+        {messages
+          .filter((i) => i?.value?.type === 'chat/text')
+          .map((item) => {
+            return (
+              <Message item={item} key={item.key + item?.value?.timestamp} />
+            );
+          })}
       </MessageList>
       <MessageBox
         multiline
